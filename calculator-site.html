@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Eating Time & Calculator</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1>Eating Time & Calculator</h1>
+
+<div class="card">
+  <label for="age">Age:</label>
+  <input type="number" id="age" placeholder="Enter your age">
+
+  <label for="gender">Gender:</label>
+  <select id="gender">
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+    <option value="child">Child</option>
+  </select>
+
+  <label for="weight">Weight (kg):</label>
+  <input type="number" id="weight" placeholder="Enter weight">
+
+  <label for="height">Height (cm):</label>
+  <input type="number" id="height" placeholder="Enter height">
+
+  <button onclick="calculate()">Calculate</button>
+</div>
+
+<div class="card" id="result"></div>
+
+<script>
+function calculate() {
+  let age = parseInt(document.getElementById('age').value);
+  let gender = document.getElementById('gender').value;
+  let weight = parseFloat(document.getElementById('weight').value);
+  let height = parseFloat(document.getElementById('height').value);
+
+  if(!age || !weight || !height){
+    alert("Please fill all fields!");
+    return;
+  }
+
+  let bmi = weight / ((height/100)*(height/100));
+  let result = "<h3>Results:</h3>";
+  result += "<p>BMI: "+bmi.toFixed(2)+"</p>";
+
+  // Simple exercise suggestion
+  if(gender=="male"){
+    result += "<p>Suggested Exercise: 30 mins cardio + strength training</p>";
+  } else if(gender=="female"){
+    result += "<p>Suggested Exercise: 30 mins cardio + yoga</p>";
+  } else {
+    result += "<p>Suggested Exercise: light play & stretching</p>";
+  }
+
+  // Simple meal suggestion
+  result += "<p>Suggested Meals Today:</p><ul class='meal'>";
+  result += "<li>Breakfast: Oats + Milk</li>";
+  result += "<li>Lunch: Chicken/Beef + Bulgur + Vegetables</li>";
+  result += "<li>Snack: Fruits / Nuts</li>";
+  result += "<li>Dinner: Soup + Salad + Grilled Meat</li>";
+  result += "</ul>";
+
+  document.getElementById('result').innerHTML = result;
+}
+</script>
+
+<script src="cookie.js"></script>
+</body>
+</html>
