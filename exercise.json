@@ -1,0 +1,5 @@
+[
+  { "type": "child", "level": "light", "exercise": "Stretching", "duration": "15 min" },
+  { "type": "adult", "level": "moderate", "exercise": "Jogging", "duration": "30 min" },
+  { "type": "adult", "level": "heavy", "exercise": "Cycling", "duration": "45 min" }
+]

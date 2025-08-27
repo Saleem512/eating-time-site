@@ -1,0 +1,5 @@
+[
+  { "meal": "Breakfast", "item": "Oats + Milk", "calories": 250, "quantity": "50g oats + 200ml milk" },
+  { "meal": "Lunch", "item": "Grilled Chicken + Bulgur", "calories": 500, "quantity": "150g chicken + 100g bulgur" },
+  { "meal": "Dinner", "item": "Soup + Salad", "calories": 300, "quantity": "1 bowl soup + 100g salad" }
+]
