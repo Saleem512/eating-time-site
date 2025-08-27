@@ -1,89 +1,53 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
-  color: #333;
-  text-align: center;
-}
+/* Reset & basic styling */
+* { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif;}
+body { background: linear-gradient(to right, #f0f8ff, #e6ffe6); color:#333; }
+header { background:#2e8b57; color:white; padding:20px; text-align:center; font-size:1.8em; font-weight:bold; box-shadow:0 4px 6px rgba(0,0,0,0.2);}
+footer { background:#2e8b57; color:white; padding:15px; text-align:center; margin-top:20px;}
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
-  background: #00695c;
-  color: white;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
+/* Logo & Superprof link */
+.logo h2 { text-align:center; color:#ff6600; margin:15px 0; font-size:2em; }
+.superprof { text-align:center; margin:15px; font-size:1em; }
+.superprof a { text-decoration:none; color:#0066cc; font-weight:bold; }
+.superprof a:hover { text-decoration:underline; }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
+/* Tabs */
+nav.tabs { display:flex; justify-content:center; flex-wrap:wrap; margin:20px 0; gap:5px; }
+nav.tabs button {
+  background:#4caf50; color:white; border:none; padding:10px 15px; cursor:pointer;
+  border-radius:8px; font-size:1em; transition:0.3s; box-shadow:0 2px 4px rgba(0,0,0,0.2);
 }
+nav.tabs button:hover { background:#45a049; transform:translateY(-2px); }
 
-.hero {
-  padding: 50px 20px;
-  background: linear-gradient(45deg, #ffecb3, #ffe0b2);
-  box-shadow: inset 0 0 50px rgba(0,0,0,0.1);
-}
+/* Tab content cards */
+.tab-content { display:none; padding:20px; margin:0 auto; max-width:900px; background:white; border-radius:12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3); transition:0.4s; }
+.tab-content h3 { text-align:center; margin-bottom:15px; color:#2e8b57; }
+.tab-content .row { margin:10px 0; display:flex; justify-content:space-between; align-items:center; }
+.tab-content label { flex:1; }
+.tab-content input, .tab-content select { flex:2; padding:5px 10px; border-radius:6px; border:1px solid #ccc; }
 
-.hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-}
+/* Buttons */
+button { background:#2e8b57; color:white; padding:8px 15px; border:none; border-radius:8px; cursor:pointer; transition:0.3s; }
+button:hover { background:#276749; transform:scale(1.05); }
 
-.card {
-  background: white;
-  margin: 20px auto;
-  padding: 20px;
-  width: 90%;
-  max-width: 600px;
-  border-radius: 15px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-  transform: perspective(1000px) rotateX(0deg);
-  transition: transform 0.3s ease-in-out;
-}
+/* Meal cards */
+.meal-card { background: linear-gradient(135deg,#ffefd5,#ffe4b5); padding:10px 15px; margin:8px 0; border-radius:10px;
+  box-shadow:0 4px 8px rgba(0,0,0,0.2); transition:0.3s; }
+.meal-card:hover { transform:translateY(-3px) scale(1.02); box-shadow:0 6px 12px rgba(0,0,0,0.25); }
 
-.card:hover {
-  transform: perspective(1000px) rotateX(3deg);
-}
+/* Task list */
+#taskList li { margin:5px 0; padding:5px 10px; list-style:none; background:#f0fff0; border-radius:8px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 2px 4px rgba(0,0,0,0.2); }
+#taskList button { background:#ff4d4d; padding:3px 8px; border-radius:6px; font-size:0.9em; }
 
-button {
-  background: #00796b;
-  color: white;
-  border: none;
-  padding: 12px 25px;
-  margin-top: 15px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: 0.3s;
-}
+/* IPv4 & Age results */
+#ipv4Results, #ageResult, #results { margin-top:10px; padding:10px; background:#f9f9f9; border-radius:8px; box-shadow:0 2px 4px rgba(0,0,0,0.1); }
 
-button:hover {
-  background: #004d40;
-  transform: scale(1.05);
-}
+/* Translator position */
+.translator { position:absolute; top:20px; right:20px; }
 
-.warning {
-  background: #ffccbc;
-  font-weight: bold;
-  border: 2px solid #ff5722;
-}
-
-.superprof-link {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #3f51b5;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 10px;
-  text-decoration: none;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  transition: 0.3s;
-}
-
-.superprof-link:hover {
-  background: #283593;
+/* Responsive */
+@media(max-width:768px){
+  .tab-content { width:95%; padding:15px; }
+  nav.tabs { flex-direction:column; }
+  .tab-content .row { flex-direction:column; }
 }
