@@ -1,93 +1,89 @@
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #f0f8ff;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
+  color: #333;
+  text-align: center;
 }
 
 header {
-    width: 100%;
-    background: #2E86C1;
-    padding: 20px 0;
-    text-align: center;
-    position: relative;
-    color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: #00695c;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
-header .logo {
-    font-size: 36px;
-    font-weight: bold;
-    text-shadow: 2px 2px #154360;
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
-main {
-    background: #fff;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    max-width: 600px;
-    width: 90%;
-    text-align: center;
+.hero {
+  padding: 50px 20px;
+  background: linear-gradient(45deg, #ffecb3, #ffe0b2);
+  box-shadow: inset 0 0 50px rgba(0,0,0,0.1);
 }
 
-.calculator {
-    margin-top: 20px;
-    text-align: left;
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
 }
 
-.calculator label {
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
+.card {
+  background: white;
+  margin: 20px auto;
+  padding: 20px;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  transform: perspective(1000px) rotateX(0deg);
+  transition: transform 0.3s ease-in-out;
 }
 
-.calculator input, .calculator select {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+.card:hover {
+  transform: perspective(1000px) rotateX(3deg);
 }
 
-.calculator button {
-    margin-top: 15px;
-    padding: 10px 15px;
-    background: #28B463;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background 0.3s;
+button {
+  background: #00796b;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  margin-top: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.3s;
 }
 
-.calculator button:hover {
-    background: #1D8348;
+button:hover {
+  background: #004d40;
+  transform: scale(1.05);
 }
 
-#results {
-    margin-top: 20px;
-    text-align: left;
-    border-top: 1px solid #ccc;
-    padding-top: 15px;
-    font-size: 16px;
+.warning {
+  background: #ffccbc;
+  font-weight: bold;
+  border: 2px solid #ff5722;
 }
 
-footer {
-    margin: 20px 0;
-    text-align: center;
+.superprof-link {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #3f51b5;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: 0.3s;
 }
 
-footer a {
-    color: #2E86C1;
-    text-decoration: none;
-    font-weight: bold;
-}
-footer a:hover {
-    text-decoration: underline;
+.superprof-link:hover {
+  background: #283593;
 }

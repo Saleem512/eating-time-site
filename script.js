@@ -1,34 +1,62 @@
 function calculateSchedule() {
-    let age = document.getElementById('age').value;
-    let gender = document.getElementById('gender').value;
-    let weight = document.getElementById('weight').value;
-    let height = document.getElementById('height').value;
-    let wakeTime = document.getElementById('wakeTime').value;
+  const age = document.getElementById("age").value;
+  const gender = document.getElementById("gender").value;
+  const weight = document.getElementById("weight").value;
+  const height = document.getElementById("height").value;
+  const wakeTime = document.getElementById("wakeTime").value;
 
-    if(!age || !weight || !height){
-        alert("Please fill all fields!");
-        return;
-    }
+  let results = `<h2>Personalized Schedule</h2>`;
+  
+  // BMI calculation
+  if (weight && height) {
+    const bmi = (weight / ((height/100) ** 2)).toFixed(1);
+    results += `<p><b>BMI:</b> ${bmi} (${bmiStatus(bmi)})</p>`;
+  }
 
-    let bmi = (weight / ((height/100)*(height/100))).toFixed(2);
+  // Meals (different for gender/child)
+  results += `<h3>Recommended Meals</h3>`;
+  if (gender === "Male") {
+    results += `
+      🍳 Breakfast: 3 boiled eggs + 2 bread slices + 1 glass milk<br>
+      🍲 Lunch: 200g chicken + rice 150g + salad<br>
+      🍎 Snack: Apple + handful nuts<br>
+      🍛 Dinner: 200g fish + vegetables<br>
+      💧 Water: 2.5L daily
+    `;
+  } else if (gender === "Female") {
+    results += `
+      🥣 Breakfast: Oats + 1 boiled egg + green tea<br>
+      🥗 Lunch: 150g chicken + vegetables + yogurt<br>
+      🍇 Snack: Fruits + almonds<br>
+      🥘 Dinner: Grilled chicken/fish + salad<br>
+      💧 Water: 2L daily
+    `;
+  } else {
+    results += `
+      🥛 Breakfast: Milk + cornflakes + banana<br>
+      🍝 Lunch: Small portion pasta + chicken + juice<br>
+      🍪 Snack: Biscuits + milk<br>
+      🍲 Dinner: Rice + vegetables + fish<br>
+      💧 Water: 1.5L daily
+    `;
+  }
 
-    fetch('meal.json')
-    .then(res => res.json())
-    .then(mealsData => {
-        let selectedMeals = mealsData.find(m => m.category === gender);
-        fetch('exercise.json')
-        .then(res => res.json())
-        .then(exData => {
-            let selectedExercises = exData.filter(e => e.category === gender);
+  // Exercises
+  results += `<h3>Suggested Exercises</h3>`;
+  if (gender === "Male") {
+    results += "🏋️ Pushups (3x15), Running 30min, Cycling 20min";
+  } else if (gender === "Female") {
+    results += "🧘 Yoga 30min, Walking 40min, Light Cardio";
+  } else {
+    results += "⚽ Outdoor games, Skipping, Running 15min";
+  }
 
-            let html = `<p><strong>BMI:</strong> ${bmi}</p>`;
-            html += `<p><strong>Suggested Exercise:</strong> ${selectedExercises.map(e => e.exercise + " (" + e.duration + ")").join(", ")}</p>`;
-            html += `<p><strong>Suggested Meals Today:</strong></p>`;
-            selectedMeals.meals.forEach(m => {
-                html += `<p>${m.meal}: ${m.item} | Quantity: ${m.quantity} | Calories: ${m.calories} kcal</p>`;
-            });
+  document.getElementById("results").innerHTML = results;
+}
 
-            document.getElementById('results').innerHTML = html;
-        });
-    });
+function bmiStatus(bmi) {
+  if (bmi < 18.5) return "Underweight";
+  if (bmi < 24.9) return "Normal";
+  if (bmi < 29.9) return "Overweight";
+  return "Obese";
 }

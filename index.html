@@ -1,59 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Eating Time & Daily Schedule</title>
-    <link rel="stylesheet" href="style.css">
-    <meta name="google" content="notranslate">
+  <meta charset="UTF-8">
+  <title>Eating Time & Daily Schedule</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1 class="logo">Alovia Services</h1>
-        <!-- Google Translate -->
-        <div id="google_translate_element" style="position:absolute; top:10px; right:10px;"></div>
-    </header>
+  <!-- Logo -->
+  <header>
+    <div class="logo">🍽️ Alovia Services</div>
+    <div id="google_translate_element"></div>
+  </header>
 
-    <main>
-        <h2>Eating Time & Daily Schedule</h2>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Eating Time & Daily Schedule</h1>
+    <p>Healthy Living • Smart Eating • Active Lifestyle</p>
+  </section>
 
-        <div class="calculator">
-            <label>Age:</label>
-            <input type="number" id="age" min="1" max="120">
+  <!-- Calculator -->
+  <div class="calculator card">
+    <h2>Health Calculator</h2>
+    <label>Age:</label>
+    <input type="number" id="age" min="1" max="120">
 
-            <label>Gender:</label>
-            <select id="gender">
-                <option value="Child">Child</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-            </select>
+    <label>Gender:</label>
+    <select id="gender">
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Child">Child</option>
+    </select>
 
-            <label>Weight (kg):</label>
-            <input type="number" id="weight" min="1">
+    <label>Weight (kg):</label>
+    <input type="number" id="weight" min="1">
 
-            <label>Height (cm):</label>
-            <input type="number" id="height" min="30">
+    <label>Height (cm):</label>
+    <input type="number" id="height" min="30">
 
-            <label>Wake-up Time:</label>
-            <input type="time" id="wakeTime" value="07:00">
+    <label>Wake-up Time:</label>
+    <input type="time" id="wakeTime" value="07:00">
 
-            <button onclick="calculateSchedule()">Calculate</button>
-        </div>
+    <button onclick="calculateSchedule()">Calculate</button>
+  </div>
 
-        <div id="results"></div>
-    </main>
+  <!-- Results -->
+  <div id="results" class="card">
+    <!-- Output -->
+  </div>
 
-    <footer>
-        <p>Learn Urdu with <a href="https://www.superprof.fr/ir/840856-6b6444" target="_blank">Saleem Sajjad Super Prof</a></p>
-    </footer>
+  <!-- Junk food Warning -->
+  <div class="warning card">
+    🚫 Avoid junk food: Burgers, Fries, Soda, Packaged Snacks  
+    ✅ Choose natural: Fruits, Vegetables, Whole Grains, Lean Protein
+  </div>
 
-    <script src="script.js"></script>
+  <!-- Superprof Link -->
+  <a href="https://www.superprof.fr/ir/840856-6b6444" target="_blank" class="superprof-link">
+    📘 Learn Urdu with Saleem Sajjad
+  </a>
 
-    <!-- Google Translate Script -->
-    <script type="text/javascript">
-      function googleTranslateElementInit() {
-        new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-      }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <!-- JS Files -->
+  <script src="script.js"></script>
+
+  <!-- Google Translate -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement(
+        { pageLanguage: 'en' },
+        'google_translate_element'
+      );
+    }
+  </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
