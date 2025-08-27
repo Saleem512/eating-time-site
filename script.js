@@ -55,47 +55,43 @@ function showMeals(gender){
   });
 }
 
-// --- IPv4 Calculator ---
-function calculateIPv4(){
-    let ip = document.getElementById("ip").value.trim();
-    let mask = document.getElementById("subnet").value.trim();
-    if(!ip || !mask){ alert("Fill IP & Mask"); return; }
+// --- IPv4 Enhanced ---
+function calculateIPv4Enhanced(){
+    let cidr = document.getElementById("ipCidr").value.trim(); // example: 192.168.1.2/23
+    if(!cidr.includes("/")) { alert("Enter CIDR like 192.168.1.2/23"); return; }
 
-    function ipToBinary(ip){
-        return ip.split('.').map(octet => ("00000000" + parseInt(octet).toString(2)).slice(-8)).join('');
-    }
-    function binaryToIp(bin){
-        let octets = [];
-        for(let i=0;i<32;i+=8){
-            octets.push(parseInt(bin.slice(i,i+8),2));
-        }
-        return octets.join('.');
-    }
+    let [ip, prefix] = cidr.split("/");
+    prefix = parseInt(prefix);
 
-    let ipBin = ipToBinary(ip);
-    let maskBin = ipToBinary(mask);
+    // Convert IP to number
+    function ipToNum(ip){ return ip.split(".").reduce((acc,o)=>acc*256 + parseInt(o),0); }
+    function numToIp(num){ return [num>>24 & 255, num>>16 & 255, num>>8 & 255, num & 255].join("."); }
+    function ipToBinary(ip){ return ip.split('.').map(o=>("00000000"+parseInt(o).toString(2)).slice(-8)).join('.'); }
 
-    // Network address: ip & mask
-    let networkBin = "";
-    for(let i=0;i<32;i++){
-        networkBin += (ipBin[i]==="1" && maskBin[i]==="1") ? "1" : "0";
-    }
+    let maskNum = (~0 << (32-prefix)) >>> 0;
+    let mask = numToIp(maskNum);
 
-    // Broadcast address: network | inverted mask
-    let invertedMask = maskBin.split('').map(b => b==="1" ? "0" : "1").join('');
-    let broadcastBin = "";
-    for(let i=0;i<32;i++){
-        broadcastBin += (networkBin[i]==="1" || invertedMask[i]==="1") ? "1" : "0";
-    }
+    let ipNum = ipToNum(ip);
+    let networkNum = ipNum & maskNum;
+    let broadcastNum = networkNum | (~maskNum >>> 0);
 
-    // Count usable hosts
-    let maskOnes = maskBin.split('1').length - 1;
-    let usableHosts = Math.pow(2, 32 - maskOnes) - 2;
+    let firstUsable = (prefix===32)? networkNum : networkNum + 1;
+    let lastUsable = (prefix===32 || prefix===31)? broadcastNum : broadcastNum - 1;
+    let usableHosts = (prefix>=31)? (prefix===31?2:1) : (broadcastNum - networkNum -1);
+
+    // Gateway suggestion
+    let gateway = firstUsable;
 
     document.getElementById("ipv4Results").innerHTML = `
-        <p><b>Network Address:</b> ${binaryToIp(networkBin)}</p>
-        <p><b>Broadcast Address:</b> ${binaryToIp(broadcastBin)}</p>
+        <p><b>IP Address:</b> ${ip}</p>
+        <p><b>Subnet Mask:</b> ${mask}</p>
+        <p><b>Prefix Length:</b> /${prefix}</p>
+        <p><b>Network Address:</b> ${numToIp(networkNum)} (${ipToBinary(numToIp(networkNum))})</p>
+        <p><b>First Usable Address:</b> ${numToIp(firstUsable)} (${ipToBinary(numToIp(firstUsable))})</p>
+        <p><b>Last Usable Address:</b> ${numToIp(lastUsable)} (${ipToBinary(numToIp(lastUsable))})</p>
+        <p><b>Broadcast Address:</b> ${numToIp(broadcastNum)} (${ipToBinary(numToIp(broadcastNum))})</p>
         <p><b>Usable Hosts:</b> ${usableHosts}</p>
+        <p><b>Suggested Gateway:</b> ${numToIp(gateway)}</p>
     `;
 }
 
@@ -139,3 +135,34 @@ function scheduleNotification(task,time){
     setTimeout(()=>{ alert(`Reminder: ${task}`); },delay);
   }
 }
+
+// --- Current Affairs ---
+const currentAffairs = [
+  {title:"World News 1",link:"https://www.bbc.com/news"},
+  {title:"World News 2",link:"https://www.cnn.com"},
+  {title:"World News 3",link:"https://www.aljazeera.com/news/"}
+];
+function showCurrentAffairs(){
+  const container = document.getElementById("currentAffairs");
+  container.innerHTML="";
+  currentAffairs.forEach(c=>{
+    container.innerHTML+=`<p><a href="${c.link}" target="_blank">${c.title}</a></p>`;
+  });
+}
+showCurrentAffairs();
+
+// --- Google Translate Widget (simple) ---
+function addGoogleTranslate(){
+  let gtDiv = document.createElement("div");
+  gtDiv.id="google_translate_element";
+  document.body.prepend(gtDiv);
+
+  let script = document.createElement("script");
+  script.src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+  document.body.appendChild(script);
+
+  window.googleTranslateElementInit = function(){
+    new google.translate.TranslateElement({pageLanguage:'en'},'google_translate_element');
+  }
+}
+addGoogleTranslate();
