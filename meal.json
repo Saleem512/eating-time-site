@@ -1,29 +1,29 @@
 [
-    {
-        "category": "Child",
-        "meals": [
-            {"meal":"Breakfast","item":"Oats + Milk","quantity":"50g oats + 150ml milk","calories":200,"image":"https://images.unsplash.com/photo-healthy-oats"},
-            {"meal":"Lunch","item":"Chicken + Rice + Veggies","quantity":"100g chicken + 80g rice + 50g vegetables","calories":400,"image":"https://images.unsplash.com/photo-chicken-rice"},
-            {"meal":"Snack","item":"Fruits","quantity":"100g apple or banana","calories":80,"image":"https://images.unsplash.com/photo-fruits"},
-            {"meal":"Dinner","item":"Soup + Salad","quantity":"1 bowl soup + 50g salad","calories":150,"image":"https://images.unsplash.com/photo-soup"}
-        ]
-    },
-    {
-        "category": "Male",
-        "meals": [
-            {"meal":"Breakfast","item":"Eggs + Toast","quantity":"2 eggs + 2 slices toast","calories":300,"image":"https://images.unsplash.com/photo-eggs"},
-            {"meal":"Lunch","item":"Grilled Chicken + Bulgur + Veggies","quantity":"150g chicken + 100g bulgur + 100g vegetables","calories":550,"image":"https://images.unsplash.com/photo-grilled-chicken"},
-            {"meal":"Snack","item":"Nuts","quantity":"30g almonds or walnuts","calories":200,"image":"https://images.unsplash.com/photo-nuts"},
-            {"meal":"Dinner","item":"Salad + Fish","quantity":"100g salad + 150g fish","calories":400,"image":"https://images.unsplash.com/photo-fish"}
-        ]
-    },
-    {
-        "category": "Female",
-        "meals": [
-            {"meal":"Breakfast","item":"Yogurt + Fruits","quantity":"150ml yogurt + 100g fruits","calories":180,"image":"https://images.unsplash.com/photo-yogurt-fruits"},
-            {"meal":"Lunch","item":"Grilled Fish + Quinoa + Veggies","quantity":"150g fish + 80g quinoa + 100g vegetables","calories":450,"image":"https://images.unsplash.com/photo-fish-quinoa"},
-            {"meal":"Snack","item":"Fruits","quantity":"100g fruits","calories":80,"image":"https://images.unsplash.com/photo-fruits"},
-            {"meal":"Dinner","item":"Soup + Salad","quantity":"1 bowl soup + 100g salad","calories":150,"image":"https://images.unsplash.com/photo-soup"}
-        ]
-    }
+  {
+    "category": "Child",
+    "meals": [
+      {"meal":"Breakfast","item":"Oats + Milk","quantity":"50g oats + 150ml milk","calories":200,"image":"https://images.unsplash.com/photo-1606755962776-1f85f9f95f4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80"},
+      {"meal":"Lunch","item":"Chicken + Rice + Veggies","quantity":"100g chicken + 80g rice + 50g vegetables","calories":400,"image":"https://images.unsplash.com/photo-1604908177522-2b7300b23305?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80"},
+      {"meal":"Snack","item":"Fruits","quantity":"100g apple or banana","calories":80,"image":"https://images.unsplash.com/photo-1570968915860-2d8b3e6b8ef8?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80"},
+      {"meal":"Dinner","item":"Soup + Salad","quantity":"1 bowl soup + 50g salad","calories":150,"image":"https://images.unsplash.com/photo-1556911073-52527ac43727?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80"}
+    ]
+  },
+  {
+    "category": "Male",
+    "meals": [
+      {"meal":"Breakfast","item":"Eggs + Toast","quantity":"2 eggs + 2 slices toast","calories":300,"image":"https://images.unsplash.com/photo-1617196035481-9ef7c92f0fa4?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80"},
+      {"meal":"Lunch","item":"Grilled Chicken + Bulgur + Veggies","quantity":"150g chicken + 100g bulgur + 100g vegetables","calories":550,"image":"https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80"},
+      {"meal":"Snack","item":"Nuts","quantity":"30g almonds or walnuts","calories":200,"image":"https://images.unsplash.com/photo-1599058917216-9a0a4e1d9b06?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80"},
+      {"meal":"Dinner","item":"Salad + Fish","quantity":"100g salad + 150g fish","calories":400,"image":"https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80"}
+    ]
+  },
+  {
+    "category": "Female",
+    "meals": [
+      {"meal":"Breakfast","item":"Yogurt + Fruits","quantity":"150ml yogurt + 100g fruits","calories":180,"image":"https://images.unsplash.com/photo-1617196035481-9ef7c92f0fa4?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80"},
+      {"meal":"Lunch","item":"Grilled Fish + Quinoa + Veggies","quantity":"150g fish + 80g quinoa + 100g vegetables","calories":450,"image":"https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80"},
+      {"meal":"Snack","item":"Fruits","quantity":"100g fruits","calories":80,"image":"https://images.unsplash.com/photo-1570968915860-2d8b3e6b8ef8?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80"},
+      {"meal":"Dinner","item":"Soup + Salad","quantity":"1 bowl soup + 100g salad","calories":150,"image":"https://images.unsplash.com/photo-1556911073-52527ac43727?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80"}
+    ]
+  }
 ]

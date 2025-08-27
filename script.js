@@ -10,33 +10,35 @@ async function calculateSchedule() {
         return;
     }
 
-    // BMI Calculation
-    const bmi = (weight / ((height/100) ** 2)).toFixed(2);
+    // BMI
+    const bmi = (weight / ((height/100)**2)).toFixed(2);
 
-    // Water Calculation
-    const waterMl = weight * 35;
+    // Water
+    const waterMl = weight*35;
     const waterGlasses = Math.round(waterMl/250);
 
     // Load meals & exercises
     const mealsResp = await fetch('meal.json');
     const mealsData = await mealsResp.json();
-
     const exercisesResp = await fetch('exercise.json');
     const exercisesData = await exercisesResp.json();
 
-    // Filter by category
     const meals = mealsData.find(m => m.category === gender).meals;
     const exercises = exercisesData.filter(e => e.category === gender);
 
-    // Display results
     const resultsDiv = document.getElementById('results');
-    resultsDiv.classList.add('animate__fadeIn');
+    resultsDiv.classList.remove('animate__fadeIn');
+    void resultsDiv.offsetWidth; // trigger reflow
+    resultsDiv.classList.add('animate__animated', 'animate__fadeIn');
+
     let html = `<h2>Results:</h2>`;
     html += `<p><strong>BMI:</strong> ${bmi}</p>`;
     html += `<p><strong>Daily Water:</strong> ${waterMl} ml (~${waterGlasses} glasses)</p>`;
 
     html += `<h3>Exercises:</h3><ul>`;
-    exercises.forEach(e => { html += `<li>${e.exercise} - ${e.duration}</li>`; });
+    exercises.forEach(e => {
+        html += `<li><img src="${e.image}" width="50" alt="${e.exercise}"> ${e.exercise} - ${e.duration}</li>`;
+    });
     html += `</ul>`;
 
     html += `<h3>Meals:</h3>`;
@@ -44,8 +46,8 @@ async function calculateSchedule() {
         html += `<div class="meal">
                     <img src="${m.image}" alt="${m.item}">
                     <div>
-                        <strong>${m.meal}:</strong> ${m.item} <br>
-                        <em>Quantity:</em> ${m.quantity} <br>
+                        <strong>${m.meal}:</strong> ${m.item}<br>
+                        <em>Quantity:</em> ${m.quantity}<br>
                         <em>Calories:</em> ${m.calories} kcal
                     </div>
                  </div>`;
