@@ -1,62 +1,54 @@
+const meals = {
+  "Male": [
+    { meal: "Breakfast", items: ["3 boiled eggs", "2 slices bread", "1 glass milk 250ml"] },
+    { meal: "Lunch", items: ["200g chicken", "150g rice", "Salad"] },
+    { meal: "Snack", items: ["Apple", "Handful nuts 30g"] },
+    { meal: "Dinner", items: ["200g fish", "Vegetables", "Milkshake 200ml"] }
+  ],
+  "Female": [
+    { meal: "Breakfast", items: ["Oats 50g", "1 boiled egg", "Green tea 200ml"] },
+    { meal: "Lunch", items: ["150g chicken", "Vegetables", "Yogurt 100ml"] },
+    { meal: "Snack", items: ["Fruits", "Almonds 20g"] },
+    { meal: "Dinner", items: ["Grilled chicken/fish 150g", "Salad", "Milkshake 200ml"] }
+  ],
+  "Child": [
+    { meal: "Breakfast", items: ["Milk 200ml", "Cornflakes 50g", "Banana"] },
+    { meal: "Lunch", items: ["Small pasta portion 100g", "Chicken 100g", "Juice 150ml"] },
+    { meal: "Snack", items: ["Biscuits 30g", "Milk 150ml"] },
+    { meal: "Dinner", items: ["Rice 100g", "Vegetables", "Fish 100g"] }
+  ]
+};
+
 function calculateSchedule() {
-  const age = document.getElementById("age").value;
-  const gender = document.getElementById("gender").value;
-  const weight = document.getElementById("weight").value;
-  const height = document.getElementById("height").value;
-  const wakeTime = document.getElementById("wakeTime").value;
+  let age = document.getElementById("age").value;
+  let gender = document.getElementById("gender").value;
+  let weight = document.getElementById("weight").value;
+  let height = document.getElementById("height").value;
+  let wakeTime = document.getElementById("wakeTime").value;
 
-  let results = `<h2>Personalized Schedule</h2>`;
-  
-  // BMI calculation
-  if (weight && height) {
-    const bmi = (weight / ((height/100) ** 2)).toFixed(1);
-    results += `<p><b>BMI:</b> ${bmi} (${bmiStatus(bmi)})</p>`;
+  if (!age || !weight || !height) {
+    alert("Please fill all fields");
+    return;
   }
 
-  // Meals (different for gender/child)
-  results += `<h3>Recommended Meals</h3>`;
-  if (gender === "Male") {
-    results += `
-      🍳 Breakfast: 3 boiled eggs + 2 bread slices + 1 glass milk<br>
-      🍲 Lunch: 200g chicken + rice 150g + salad<br>
-      🍎 Snack: Apple + handful nuts<br>
-      🍛 Dinner: 200g fish + vegetables<br>
-      💧 Water: 2.5L daily
-    `;
-  } else if (gender === "Female") {
-    results += `
-      🥣 Breakfast: Oats + 1 boiled egg + green tea<br>
-      🥗 Lunch: 150g chicken + vegetables + yogurt<br>
-      🍇 Snack: Fruits + almonds<br>
-      🥘 Dinner: Grilled chicken/fish + salad<br>
-      💧 Water: 2L daily
-    `;
-  } else {
-    results += `
-      🥛 Breakfast: Milk + cornflakes + banana<br>
-      🍝 Lunch: Small portion pasta + chicken + juice<br>
-      🍪 Snack: Biscuits + milk<br>
-      🍲 Dinner: Rice + vegetables + fish<br>
-      💧 Water: 1.5L daily
-    `;
-  }
+  let bmi = (weight / ((height/100) ** 2)).toFixed(2);
+  let exercise;
+  if (gender === "Child") exercise = "Light play & stretching";
+  else exercise = "Cardio & Strength Training";
 
-  // Exercises
-  results += `<h3>Suggested Exercises</h3>`;
-  if (gender === "Male") {
-    results += "🏋️ Pushups (3x15), Running 30min, Cycling 20min";
-  } else if (gender === "Female") {
-    results += "🧘 Yoga 30min, Walking 40min, Light Cardio";
-  } else {
-    results += "⚽ Outdoor games, Skipping, Running 15min";
-  }
+  document.getElementById("results").innerHTML = `
+    <p><b>BMI:</b> ${bmi}</p>
+    <p><b>Suggested Exercise:</b> ${exercise}</p>
+    <p><b>Junk Food Warning:</b> Avoid Burgers, Fries, Soda. Choose healthy options!</p>
+  `;
 
-  document.getElementById("results").innerHTML = results;
+  showMeals(gender);
 }
 
-function bmiStatus(bmi) {
-  if (bmi < 18.5) return "Underweight";
-  if (bmi < 24.9) return "Normal";
-  if (bmi < 29.9) return "Overweight";
-  return "Obese";
+function showMeals(gender) {
+  const container = document.getElementById("meal-plan");
+  container.innerHTML = "";
+  meals[gender].forEach(meal => {
+    container.innerHTML += `<div class="meal-card"><b>${meal.meal}:</b> ${meal.items.join(", ")}</div>`;
+  });
 }

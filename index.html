@@ -4,73 +4,194 @@
   <meta charset="UTF-8">
   <title>Eating Time & Daily Schedule</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #a8edea, #fed6e3);
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #4CAF50;
+      padding: 20px;
+      color: white;
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    .logo h2 {
+      font-size: 40px;
+      color: #ff4081;
+      margin: 20px 0;
+      text-shadow: 2px 2px 5px #00000033;
+    }
+
+    .calculator, #recipes {
+      background: white;
+      border-radius: 20px;
+      padding: 25px;
+      width: 450px;
+      margin: 20px auto;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    label {
+      font-weight: bold;
+      width: 120px;
+      text-align: left;
+    }
+
+    input, select {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      flex: 1;
+      margin-left: 10px;
+    }
+
+    button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 25px;
+      background: #4CAF50;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #45a049;
+      transform: scale(1.05);
+    }
+
+    #results, #meal-plan {
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .translator {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+    }
+
+    .superprof {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      background: #ff4081;
+      padding: 10px 15px;
+      border-radius: 12px;
+    }
+
+    .superprof a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 15px;
+      font-size: 14px;
+      background: #333;
+      color: white;
+    }
+
+    /* Meal cards */
+    .meal-card {
+      background: #f0f0f0;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 10px;
+    }
+
+    .meal-card b {
+      color: #0077b6;
+    }
+
+  </style>
 </head>
 <body>
-  <!-- Logo -->
-  <header>
-    <div class="logo">🍽️ Alovia Services</div>
-    <div id="google_translate_element"></div>
-  </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1>Eating Time & Daily Schedule</h1>
-    <p>Healthy Living • Smart Eating • Active Lifestyle</p>
-  </section>
+<header>Eating Time & Daily Schedule</header>
 
-  <!-- Calculator -->
-  <div class="calculator card">
-    <h2>Health Calculator</h2>
+<div class="logo">
+  <h2>Alovia Services</h2>
+</div>
+
+<div class="calculator">
+  <div class="row">
     <label>Age:</label>
     <input type="number" id="age" min="1" max="120">
+  </div>
 
+  <div class="row">
     <label>Gender:</label>
     <select id="gender">
       <option value="Male">Male</option>
       <option value="Female">Female</option>
       <option value="Child">Child</option>
     </select>
+  </div>
 
+  <div class="row">
     <label>Weight (kg):</label>
     <input type="number" id="weight" min="1">
+  </div>
 
+  <div class="row">
     <label>Height (cm):</label>
     <input type="number" id="height" min="30">
+  </div>
 
+  <div class="row">
     <label>Wake-up Time:</label>
     <input type="time" id="wakeTime" value="07:00">
-
-    <button onclick="calculateSchedule()">Calculate</button>
   </div>
 
-  <!-- Results -->
-  <div id="results" class="card">
-    <!-- Output -->
-  </div>
+  <button onclick="calculateSchedule()">Calculate</button>
+</div>
 
-  <!-- Junk food Warning -->
-  <div class="warning card">
-    🚫 Avoid junk food: Burgers, Fries, Soda, Packaged Snacks  
-    ✅ Choose natural: Fruits, Vegetables, Whole Grains, Lean Protein
-  </div>
+<div id="results"></div>
 
-  <!-- Superprof Link -->
-  <a href="https://www.superprof.fr/ir/840856-6b6444" target="_blank" class="superprof-link">
-    📘 Learn Urdu with Saleem Sajjad
+<div id="recipes">
+  <h2>Today's Meal Plan</h2>
+  <div id="meal-plan"></div>
+</div>
+
+<div class="translator" id="google_translate_element"></div>
+
+<div class="superprof">
+  <a href="https://www.superprof.fr/ir/840856-6b6444" target="_blank">
+    Learn Urdu with Saleem Sajjad
   </a>
+</div>
 
-  <!-- JS Files -->
-  <script src="script.js"></script>
+<footer>
+  &copy; 2025 Alovia Services - Stay Healthy, Stay Happy!
+</footer>
 
-  <!-- Google Translate -->
-  <script type="text/javascript">
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement(
-        { pageLanguage: 'en' },
-        'google_translate_element'
-      );
-    }
-  </script>
-  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script src="script.js"></script>
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      { pageLanguage: 'en' },
+      'google_translate_element'
+    );
+  }
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 </html>
