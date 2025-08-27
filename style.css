@@ -1,53 +1,8 @@
-/* Reset & basic styling */
-* { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif;}
-body { background: linear-gradient(to right, #f0f8ff, #e6ffe6); color:#333; }
-header { background:#2e8b57; color:white; padding:20px; text-align:center; font-size:1.8em; font-weight:bold; box-shadow:0 4px 6px rgba(0,0,0,0.2);}
-footer { background:#2e8b57; color:white; padding:15px; text-align:center; margin-top:20px;}
-
-/* Logo & Superprof link */
-.logo h2 { text-align:center; color:#ff6600; margin:15px 0; font-size:2em; }
-.superprof { text-align:center; margin:15px; font-size:1em; }
-.superprof a { text-decoration:none; color:#0066cc; font-weight:bold; }
-.superprof a:hover { text-decoration:underline; }
-
-/* Tabs */
-nav.tabs { display:flex; justify-content:center; flex-wrap:wrap; margin:20px 0; gap:5px; }
-nav.tabs button {
-  background:#4caf50; color:white; border:none; padding:10px 15px; cursor:pointer;
-  border-radius:8px; font-size:1em; transition:0.3s; box-shadow:0 2px 4px rgba(0,0,0,0.2);
-}
-nav.tabs button:hover { background:#45a049; transform:translateY(-2px); }
-
-/* Tab content cards */
-.tab-content { display:none; padding:20px; margin:0 auto; max-width:900px; background:white; border-radius:12px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.3); transition:0.4s; }
-.tab-content h3 { text-align:center; margin-bottom:15px; color:#2e8b57; }
-.tab-content .row { margin:10px 0; display:flex; justify-content:space-between; align-items:center; }
-.tab-content label { flex:1; }
-.tab-content input, .tab-content select { flex:2; padding:5px 10px; border-radius:6px; border:1px solid #ccc; }
-
-/* Buttons */
-button { background:#2e8b57; color:white; padding:8px 15px; border:none; border-radius:8px; cursor:pointer; transition:0.3s; }
-button:hover { background:#276749; transform:scale(1.05); }
-
-/* Meal cards */
-.meal-card { background: linear-gradient(135deg,#ffefd5,#ffe4b5); padding:10px 15px; margin:8px 0; border-radius:10px;
-  box-shadow:0 4px 8px rgba(0,0,0,0.2); transition:0.3s; }
-.meal-card:hover { transform:translateY(-3px) scale(1.02); box-shadow:0 6px 12px rgba(0,0,0,0.25); }
-
-/* Task list */
-#taskList li { margin:5px 0; padding:5px 10px; list-style:none; background:#f0fff0; border-radius:8px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 2px 4px rgba(0,0,0,0.2); }
-#taskList button { background:#ff4d4d; padding:3px 8px; border-radius:6px; font-size:0.9em; }
-
-/* IPv4 & Age results */
-#ipv4Results, #ageResult, #results { margin-top:10px; padding:10px; background:#f9f9f9; border-radius:8px; box-shadow:0 2px 4px rgba(0,0,0,0.1); }
-
-/* Translator position */
-.translator { position:absolute; top:20px; right:20px; }
-
-/* Responsive */
-@media(max-width:768px){
-  .tab-content { width:95%; padding:15px; }
-  nav.tabs { flex-direction:column; }
-  .tab-content .row { flex-direction:column; }
-}
+body { font-family: Arial, sans-serif; background:#f0f4f7; margin:0; padding:20px; }
+#logo { text-align:center; font-size:32px; font-weight:bold; color:#2c3e50; margin-bottom:20px; }
+h1 { text-align:center; color:#34495e; }
+.tabs { text-align:center; margin-bottom:20px; }
+.tabs button { padding:10px 15px; margin:0 5px; cursor:pointer; border:none; border-radius:5px; background:#3498db; color:#fff; }
+.tabs button:hover { background:#2980b9; }
+.tab-content { display:none; background:#fff; padding:20px; border-radius:8px; margin-bottom:20px; }
+.meal-card { background:#ecf0f1; padding:10px; margin:5px 0; border-radius:5px; }

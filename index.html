@@ -1,123 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Alovia Multi Dashboard</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Alovia Services - Multi Calculator</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div id="logo">Alovia Services</div>
 
-<header>Alovia Services - Multi Dashboard</header>
+<h1>Multi-Functional Calculator Dashboard</h1>
 
-<div class="logo"><h2>Alovia Services</h2></div>
-
-<div class="translator" id="google_translate_element"></div>
-
-<nav class="tabs">
-  <button onclick="showTab('health')">Health & Meal</button>
-  <button onclick="showTab('ipv4')">IPv4 Calculator</button>
-  <button onclick="showTab('age')">Age Calculator</button>
+<!-- Tabs -->
+<div class="tabs">
+  <button onclick="showTab('health')">Health & Meals</button>
+  <button onclick="showTab('ageCalc')">Age Calculator</button>
+  <button onclick="showTab('ipv4Calc')">IPv4 Calculator</button>
   <button onclick="showTab('tasks')">Tasks</button>
-  <button onclick="showTab('recipes')">Recipes</button>
-  <button onclick="showTab('news')">Current Affairs</button>
-</nav>
-
-<div id="content">
-
-  <!-- Health & Meal Calculator -->
-  <div id="health" class="tab-content">
-    <h3>Health & Meal Calculator</h3>
-    <div class="calculator">
-      <div class="row">
-        <label>Age:</label><input type="number" id="age" min="1" max="120">
-      </div>
-      <div class="row">
-        <label>Gender:</label>
-        <select id="gender">
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Child">Child</option>
-        </select>
-      </div>
-      <div class="row">
-        <label>Weight (kg):</label><input type="number" id="weight" min="1">
-      </div>
-      <div class="row">
-        <label>Height (cm):</label><input type="number" id="height" min="30">
-      </div>
-      <div class="row">
-        <label>Wake-up Time:</label><input type="time" id="wakeTime" value="07:00">
-      </div>
-      <button onclick="calculateSchedule()">Calculate</button>
-    </div>
-    <div id="results"></div>
-  </div>
-
-  <!-- IPv4 Calculator -->
-  <div id="ipv4" class="tab-content">
-    <h3>IPv4 Calculator</h3>
-    <label>IP Address:</label><input type="text" id="ip" placeholder="192.168.1.0"><br>
-    <label>Subnet Mask:</label><input type="text" id="subnet" placeholder="255.255.255.0"><br>
-    <button onclick="calculateIPv4()">Calculate</button>
-    <div id="ipv4Results"></div>
-  </div>
-
-  <!-- Age Calculator -->
-  <div id="age" class="tab-content">
-    <h3>Age Calculator</h3>
-    <label>Date of Birth:</label><input type="date" id="dob"><br>
-    <button onclick="calculateAge()">Calculate Age</button>
-    <div id="ageResult"></div>
-  </div>
-
-  <!-- Tasks -->
-  <div id="tasks" class="tab-content">
-    <h3>Tasks & Reminders</h3>
-    <input type="text" id="taskInput" placeholder="Enter task">
-    <input type="time" id="taskTime">
-    <button onclick="addTask()">Add Task</button>
-    <ul id="taskList"></ul>
-  </div>
-
-  <!-- Recipes -->
-  <div id="recipes" class="tab-content">
-    <h3>Recipes & Meals</h3>
-    <div id="meal-plan"></div>
-  </div>
-
-  <!-- Current Affairs -->
-  <div id="news" class="tab-content">
-    <h3>World Current Affairs</h3>
-    <ul>
-      <li><a href="https://www.bbc.com/news" target="_blank">BBC News</a></li>
-      <li><a href="https://www.cnn.com" target="_blank">CNN</a></li>
-      <li><a href="https://www.aljazeera.com" target="_blank">Al Jazeera</a></li>
-      <li><a href="https://www.reuters.com/news/world" target="_blank">Reuters</a></li>
-    </ul>
-  </div>
-
+  <button onclick="showTab('currentAffairs')">Current Affairs</button>
 </div>
 
-<div class="superprof">
-  <a href="https://www.superprof.fr/ir/840856-6b6444" target="_blank">
-    Learn Urdu with Saleem Sajjad
-  </a>
+<!-- Health & Meals -->
+<div class="tab-content" id="health">
+  <label>Age:</label><input type="number" id="age" min="1" max="120">
+  <label>Gender:</label>
+  <select id="gender">
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+    <option value="Child">Child</option>
+  </select>
+  <label>Weight (kg):</label><input type="number" id="weight" min="1">
+  <label>Height (cm):</label><input type="number" id="height" min="30">
+  <button onclick="calculateSchedule()">Calculate</button>
+  <div id="results"></div>
+  <div id="meal-plan"></div>
 </div>
 
-<footer>
-  &copy; 2025 Alovia Services - Stay Healthy & Smart!
-</footer>
+<!-- Age Calculator -->
+<div class="tab-content" id="ageCalc">
+  <label>Date of Birth:</label>
+  <input type="date" id="dob">
+  <button onclick="calculateAge()">Calculate Age</button>
+  <p id="ageResult"></p>
+</div>
+
+<!-- IPv4 Calculator -->
+<div class="tab-content" id="ipv4Calc">
+  <label>IP Address/CIDR:</label>
+  <input type="text" id="ipCidr" placeholder="192.168.1.2/23">
+  <button onclick="calculateIPv4Enhanced()">Calculate</button>
+  <div id="ipv4Results"></div>
+</div>
+
+<!-- Tasks -->
+<div class="tab-content" id="tasks">
+  <input type="text" id="taskInput" placeholder="Task">
+  <input type="time" id="taskTime">
+  <button onclick="addTask()">Add Task</button>
+  <ul id="taskList"></ul>
+</div>
+
+<!-- Current Affairs -->
+<div class="tab-content" id="currentAffairs">
+  <div id="currentAffairs"></div>
+</div>
 
 <script src="script.js"></script>
-<script type="text/javascript">
-  function googleTranslateElementInit() {
-    new google.translate.TranslateElement(
-      { pageLanguage: 'en' },
-      'google_translate_element'
-    );
-  }
-</script>
-<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
 </body>
 </html>
