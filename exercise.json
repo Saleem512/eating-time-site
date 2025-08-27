@@ -1,5 +1,8 @@
 [
-  { "type": "child", "level": "light", "exercise": "Stretching", "duration": "15 min" },
-  { "type": "adult", "level": "moderate", "exercise": "Jogging", "duration": "30 min" },
-  { "type": "adult", "level": "heavy", "exercise": "Cycling", "duration": "45 min" }
+    {"category":"Child","exercise":"Light Play & Stretching","duration":"15-20 min"},
+    {"category":"Child","exercise":"Cycling / Walking","duration":"20-30 min"},
+    {"category":"Male","exercise":"Jogging","duration":"30 min"},
+    {"category":"Male","exercise":"Weight Training","duration":"45 min"},
+    {"category":"Female","exercise":"Yoga","duration":"30 min"},
+    {"category":"Female","exercise":"Brisk Walking","duration":"30 min"}
 ]

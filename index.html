@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Eating Time & Daily Schedule</title>
+    <title>Eating Time & Daily Planner</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Animate.css for animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
 <body>
-    <h1>Eating Time & Daily Schedule</h1>
+    <h1>Eating Time & Daily Planner</h1>
 
-    <!-- 🌍 Google Translate Button -->
+    <!-- Google Translate -->
     <div id="google_translate_element"></div>
 
     <div class="calculator">
@@ -17,9 +19,9 @@
 
         <label>Gender:</label>
         <select id="gender">
+            <option value="Child">Child</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
-            <option value="Child">Child</option>
         </select>
 
         <label>Weight (kg):</label>
@@ -34,19 +36,14 @@
         <button onclick="calculateSchedule()">Calculate</button>
     </div>
 
-    <div id="results">
-        <!-- Schedule will appear here -->
-    </div>
+    <div id="results" class="animate__animated"></div>
 
     <script src="script.js"></script>
 
-    <!-- 🌍 Google Translate Scripts -->
+    <!-- Google Translate Scripts -->
     <script type="text/javascript">
         function googleTranslateElementInit() {
-            new google.translate.TranslateElement(
-                {pageLanguage: 'en'}, 
-                'google_translate_element'
-            );
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
         }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>

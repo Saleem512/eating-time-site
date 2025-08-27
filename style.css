@@ -1,9 +1,70 @@
-body{font-family:system-ui,Segoe UI,Helvetica,Arial;max-width:900px;margin:18px auto;padding:14px;}
-label{display:block;margin-top:10px;font-weight:600}
-input,select{padding:8px;width:100%;max-width:360px;margin-top:6px;border-radius:6px;border:1px solid #ccc}
-button{margin-top:14px;padding:10px 14px;border-radius:8px;border:none;background:#1e88e5;color:white;cursor:pointer}
-.card{border:1px solid #eee;padding:12px;border-radius:8px;margin-top:14px;background:#fafafa}
-.small{font-size:0.92em;color:#444}
-ul{margin:6px 0 12px 18px}
-.meal{margin-bottom:8px}
-.muted{color:#666;font-size:0.95em}
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #fdfdfd;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.calculator {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 15px;
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input, select {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background-color: #45a049;
+}
+
+#results {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #e0f7fa;
+}
+
+.meal {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.meal img {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+    border-radius: 8px;
+}
