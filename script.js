@@ -55,15 +55,26 @@ function showMeals(gender){
   });
 }
 
-// --- IPv4 Enhanced ---
-function calculateIPv4Enhanced(){
-    let cidr = document.getElementById("ipCidr").value.trim(); // example: 192.168.1.2/23
-    if(!cidr.includes("/")) { alert("Enter CIDR like 192.168.1.2/23"); return; }
+// --- Age Calculator ---
+function calculateAge(){
+  let dobInput = document.getElementById("dob");
+  if(!dobInput.value){ alert("Enter DOB"); return; }
 
-    let [ip, prefix] = cidr.split("/");
+  let dob = new Date(dobInput.value);
+  let diff = Date.now() - dob.getTime();
+  let age_dt = new Date(diff);
+  let years = age_dt.getUTCFullYear()-1970;
+  document.getElementById("ageResult").innerHTML = `Age: ${years} years`;
+}
+
+// --- IPv4 Enhanced Calculator ---
+function calculateIPv4Enhanced(){
+    let cidrInput = document.getElementById("ipCidr");
+    if(!cidrInput.value.includes("/")) { alert("Enter CIDR like 192.168.1.2/23"); return; }
+
+    let [ip, prefix] = cidrInput.value.split("/");
     prefix = parseInt(prefix);
 
-    // Convert IP to number
     function ipToNum(ip){ return ip.split(".").reduce((acc,o)=>acc*256 + parseInt(o),0); }
     function numToIp(num){ return [num>>24 & 255, num>>16 & 255, num>>8 & 255, num & 255].join("."); }
     function ipToBinary(ip){ return ip.split('.').map(o=>("00000000"+parseInt(o).toString(2)).slice(-8)).join('.'); }
@@ -75,17 +86,15 @@ function calculateIPv4Enhanced(){
     let networkNum = ipNum & maskNum;
     let broadcastNum = networkNum | (~maskNum >>> 0);
 
-    let firstUsable = (prefix===32)? networkNum : networkNum + 1;
-    let lastUsable = (prefix===32 || prefix===31)? broadcastNum : broadcastNum - 1;
+    let firstUsable = (prefix>=31)? networkNum : networkNum +1;
+    let lastUsable = (prefix>=31)? broadcastNum : broadcastNum-1;
     let usableHosts = (prefix>=31)? (prefix===31?2:1) : (broadcastNum - networkNum -1);
-
-    // Gateway suggestion
     let gateway = firstUsable;
 
     document.getElementById("ipv4Results").innerHTML = `
         <p><b>IP Address:</b> ${ip}</p>
         <p><b>Subnet Mask:</b> ${mask}</p>
-        <p><b>Prefix Length:</b> /${prefix}</p>
+        <p><b>Prefix:</b> /${prefix}</p>
         <p><b>Network Address:</b> ${numToIp(networkNum)} (${ipToBinary(numToIp(networkNum))})</p>
         <p><b>First Usable Address:</b> ${numToIp(firstUsable)} (${ipToBinary(numToIp(firstUsable))})</p>
         <p><b>Last Usable Address:</b> ${numToIp(lastUsable)} (${ipToBinary(numToIp(lastUsable))})</p>
@@ -93,16 +102,6 @@ function calculateIPv4Enhanced(){
         <p><b>Usable Hosts:</b> ${usableHosts}</p>
         <p><b>Suggested Gateway:</b> ${numToIp(gateway)}</p>
     `;
-}
-
-// --- Age Calculator ---
-function calculateAge(){
-  let dob = new Date(document.getElementById("dob").value);
-  if(!dob){ alert("Enter DOB"); return;}
-  let diff = Date.now() - dob.getTime();
-  let age_dt = new Date(diff);
-  let years = age_dt.getUTCFullYear()-1970;
-  document.getElementById("ageResult").innerHTML = `Age: ${years} years`;
 }
 
 // --- Tasks ---
@@ -138,9 +137,9 @@ function scheduleNotification(task,time){
 
 // --- Current Affairs ---
 const currentAffairs = [
-  {title:"World News 1",link:"https://www.bbc.com/news"},
-  {title:"World News 2",link:"https://www.cnn.com"},
-  {title:"World News 3",link:"https://www.aljazeera.com/news/"}
+  {title:"BBC World",link:"https://www.bbc.com/news"},
+  {title:"CNN",link:"https://www.cnn.com"},
+  {title:"Al Jazeera",link:"https://www.aljazeera.com/news/"}
 ];
 function showCurrentAffairs(){
   const container = document.getElementById("currentAffairs");
@@ -151,7 +150,7 @@ function showCurrentAffairs(){
 }
 showCurrentAffairs();
 
-// --- Google Translate Widget (simple) ---
+// --- Google Translate Widget ---
 function addGoogleTranslate(){
   let gtDiv = document.createElement("div");
   gtDiv.id="google_translate_element";
