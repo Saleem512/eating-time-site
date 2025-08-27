@@ -37,11 +37,11 @@ function calculateSchedule(){
   if(!age || !weight || !height){ alert("Fill all fields"); return; }
 
   let bmi = (weight / ((height/100)**2)).toFixed(2);
-  let exercise = (gender==="Child")?"Light play":"Cardio & Strength";
+  let exercise = (gender==="Child")?"Light play & stretching":"Cardio & Strength training";
 
   document.getElementById("results").innerHTML = `
     <p><b>BMI:</b> ${bmi}</p>
-    <p><b>Exercise:</b> ${exercise}</p>
+    <p><b>Suggested Exercise:</b> ${exercise}</p>
     <p><b>Junk Food Warning:</b> Avoid burgers, fries, soda!</p>
   `;
   showMeals(gender);
@@ -57,12 +57,46 @@ function showMeals(gender){
 
 // --- IPv4 Calculator ---
 function calculateIPv4(){
-  let ip = document.getElementById("ip").value;
-  let mask = document.getElementById("subnet").value;
-  if(!ip || !mask){ alert("Fill IP & Mask"); return;}
-  document.getElementById("ipv4Results").innerHTML = `
-    Network: ${ip}/${mask} <br> Broadcast: TBD <br> Usable Hosts: TBD
-  `;
+    let ip = document.getElementById("ip").value.trim();
+    let mask = document.getElementById("subnet").value.trim();
+    if(!ip || !mask){ alert("Fill IP & Mask"); return; }
+
+    function ipToBinary(ip){
+        return ip.split('.').map(octet => ("00000000" + parseInt(octet).toString(2)).slice(-8)).join('');
+    }
+    function binaryToIp(bin){
+        let octets = [];
+        for(let i=0;i<32;i+=8){
+            octets.push(parseInt(bin.slice(i,i+8),2));
+        }
+        return octets.join('.');
+    }
+
+    let ipBin = ipToBinary(ip);
+    let maskBin = ipToBinary(mask);
+
+    // Network address: ip & mask
+    let networkBin = "";
+    for(let i=0;i<32;i++){
+        networkBin += (ipBin[i]==="1" && maskBin[i]==="1") ? "1" : "0";
+    }
+
+    // Broadcast address: network | inverted mask
+    let invertedMask = maskBin.split('').map(b => b==="1" ? "0" : "1").join('');
+    let broadcastBin = "";
+    for(let i=0;i<32;i++){
+        broadcastBin += (networkBin[i]==="1" || invertedMask[i]==="1") ? "1" : "0";
+    }
+
+    // Count usable hosts
+    let maskOnes = maskBin.split('1').length - 1;
+    let usableHosts = Math.pow(2, 32 - maskOnes) - 2;
+
+    document.getElementById("ipv4Results").innerHTML = `
+        <p><b>Network Address:</b> ${binaryToIp(networkBin)}</p>
+        <p><b>Broadcast Address:</b> ${binaryToIp(broadcastBin)}</p>
+        <p><b>Usable Hosts:</b> ${usableHosts}</p>
+    `;
 }
 
 // --- Age Calculator ---
