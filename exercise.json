@@ -1,8 +1,8 @@
 [
-    {"category":"Child","exercise":"Light Play & Stretching","duration":"15-20 min","image":"https://images.unsplash.com/photo-1599058917216-9a0a4e1d9b06?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"},
+    {"category":"Child","exercise":"Light Play & Stretching","duration":"15-20 min","image":"https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"},
     {"category":"Child","exercise":"Cycling / Walking","duration":"20-30 min","image":"https://images.unsplash.com/photo-1599058917216-9a0a4e1d9b06?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"},
-    {"category":"Male","exercise":"Jogging","duration":"30 min","image":"https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"},
-    {"category":"Male","exercise":"Weight Training","duration":"45 min","image":"https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"},
-    {"category":"Female","exercise":"Yoga","duration":"30 min","image":"https://images.unsplash.com/photo-1617196035481-9ef7c92f0fa4?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"},
-    {"category":"Female","exercise":"Brisk Walking","duration":"30 min","image":"https://images.unsplash.com/photo-1617196035481-9ef7c92f0fa4?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"}
+    {"category":"Male","exercise":"Jogging","duration":"30 min","image":"https://images.unsplash.com/photo-1600851717450-540b9c851b8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"},
+    {"category":"Male","exercise":"Weight Training","duration":"45 min","image":"https://images.unsplash.com/photo-1600447624422-ef9b5f0c9b82?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"},
+    {"category":"Female","exercise":"Yoga","duration":"30 min","image":"https://images.unsplash.com/photo-1605296867304-46d5465a13f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"},
+    {"category":"Female","exercise":"Brisk Walking","duration":"30 min","image":"https://images.unsplash.com/photo-1605296867304-46d5465a13f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"}
 ]
