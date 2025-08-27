@@ -1,73 +1,44 @@
-// --- Tabs ---
-function showTab(tab) {
-  const contents = document.querySelectorAll(".tab-content");
-  contents.forEach(c => c.style.display = "none");
-  document.getElementById(tab).style.display = "block";
-}
-showTab('health'); // default tab
-
-// --- Health & Meal ---
-const meals = {
-  "Male":[
-    {meal:"Breakfast",items:["3 eggs","2 slices bread","Milk 250ml"]},
-    {meal:"Lunch",items:["200g chicken","150g rice","Salad"]},
-    {meal:"Snack",items:["Apple","Nuts 30g"]},
-    {meal:"Dinner",items:["200g fish","Veggies","Milkshake 200ml"]}
-  ],
-  "Female":[
-    {meal:"Breakfast",items:["Oats 50g","1 egg","Green tea 200ml"]},
-    {meal:"Lunch",items:["150g chicken","Veggies","Yogurt 100ml"]},
-    {meal:"Snack",items:["Fruits","Almonds 20g"]},
-    {meal:"Dinner",items:["Grilled chicken/fish 150g","Salad","Milkshake 200ml"]}
-  ],
-  "Child":[
-    {meal:"Breakfast",items:["Milk 200ml","Cornflakes 50g","Banana"]},
-    {meal:"Lunch",items:["Pasta 100g","Chicken 100g","Juice 150ml"]},
-    {meal:"Snack",items:["Biscuits 30g","Milk 150ml"]},
-    {meal:"Dinner",items:["Rice 100g","Veggies","Fish 100g"]}
-  ]
-};
-
-function calculateSchedule(){
-  let age = document.getElementById("age").value;
-  let gender = document.getElementById("gender").value;
-  let weight = document.getElementById("weight").value;
-  let height = document.getElementById("height").value;
-
-  if(!age || !weight || !height){ alert("Fill all fields"); return; }
-
-  let bmi = (weight / ((height/100)**2)).toFixed(2);
-  let exercise = (gender==="Child")?"Light play & stretching":"Cardio & Strength training";
-
-  document.getElementById("results").innerHTML = `
-    <p><b>BMI:</b> ${bmi}</p>
-    <p><b>Suggested Exercise:</b> ${exercise}</p>
-    <p><b>Junk Food Warning:</b> Avoid burgers, fries, soda!</p>
-  `;
-  showMeals(gender);
+// Tabs functionality
+function showTab(tabId){
+  document.querySelectorAll('.tab-content').forEach(tc=>tc.style.display='none');
+  document.getElementById(tabId).style.display='block';
 }
 
-function showMeals(gender){
-  const container = document.getElementById("meal-plan");
-  container.innerHTML="";
-  meals[gender].forEach(m=>{
-    container.innerHTML+=`<div class="meal-card"><b>${m.meal}:</b> ${m.items.join(", ")}</div>`;
-  });
-}
-
-// --- Age Calculator ---
+// Age Calculator
 function calculateAge(){
-  let dobInput = document.getElementById("dob");
-  if(!dobInput.value){ alert("Enter DOB"); return; }
+    let dobInput = document.getElementById("dob");
+    if(!dobInput.value){ alert("Enter DOB"); return; }
 
-  let dob = new Date(dobInput.value);
-  let diff = Date.now() - dob.getTime();
-  let age_dt = new Date(diff);
-  let years = age_dt.getUTCFullYear()-1970;
-  document.getElementById("ageResult").innerHTML = `Age: ${years} years`;
+    let dob = new Date(dobInput.value);
+    let now = new Date();
+
+    let diffMs = now - dob;
+    let diffDate = new Date(diffMs);
+
+    let years = now.getFullYear() - dob.getFullYear();
+    let months = now.getMonth() - dob.getMonth();
+    let days = now.getDate() - dob.getDate();
+    let hours = now.getHours() - dob.getHours();
+    let minutes = now.getMinutes() - dob.getMinutes();
+    let seconds = now.getSeconds() - dob.getSeconds();
+
+    if(seconds<0){ seconds+=60; minutes--; }
+    if(minutes<0){ minutes+=60; hours--; }
+    if(hours<0){ hours+=24; days--; }
+    if(days<0){ 
+        let prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += prevMonth.getDate();
+        months--;
+    }
+    if(months<0){ months+=12; years--; }
+
+    document.getElementById("ageResult").innerHTML = `
+        Age: ${years} years, ${months} months, ${days} days,
+        ${hours} hours, ${minutes} minutes, ${seconds} seconds
+    `;
 }
 
-// --- IPv4 Enhanced Calculator ---
+// IPv4 Enhanced
 function calculateIPv4Enhanced(){
     let cidrInput = document.getElementById("ipCidr");
     if(!cidrInput.value.includes("/")) { alert("Enter CIDR like 192.168.1.2/23"); return; }
@@ -104,64 +75,54 @@ function calculateIPv4Enhanced(){
     `;
 }
 
-// --- Tasks ---
+// Tasks
 let tasks = [];
 function addTask(){
-  let t = document.getElementById("taskInput").value;
-  let time = document.getElementById("taskTime").value;
-  if(!t || !time){ alert("Enter task and time"); return;}
-  tasks.push({task:t,time:time});
-  displayTasks();
-  scheduleNotification(t,time);
-  document.getElementById("taskInput").value="";
+    let t = document.getElementById("taskInput").value;
+    let time = document.getElementById("taskTime").value;
+    let email = document.getElementById("taskEmail").value;
+
+    if(!t || !time){ alert("Enter task and time"); return;}
+
+    tasks.push({task:t, time:time, email:email});
+    displayTasks();
+    scheduleNotification(t,time,email);
+
+    document.getElementById("taskInput").value="";
+    document.getElementById("taskTime").value="";
+    document.getElementById("taskEmail").value="";
 }
 
 function displayTasks(){
-  let ul = document.getElementById("taskList");
-  ul.innerHTML="";
-  tasks.forEach((tsk,i)=>{
-    ul.innerHTML+=`<li>${tsk.task} at ${tsk.time} <button onclick="tasks.splice(${i},1);displayTasks()">Done</button></li>`;
-  });
+    let ul = document.getElementById("taskList");
+    ul.innerHTML="";
+    tasks.forEach((tsk,i)=>{
+        ul.innerHTML+=`
+        <li>
+            <b>${tsk.task}</b> at <i>${tsk.time}</i> 
+            <span style="color:#555">Email: ${tsk.email||'Not provided'}</span>
+            <button onclick="tasks.splice(${i},1);displayTasks()">Done</button>
+        </li>`;
+    });
 }
 
-function scheduleNotification(task,time){
-  let [hours,minutes] = time.split(":");
-  let now = new Date();
-  let notifTime = new Date();
-  notifTime.setHours(hours,minutes,0,0);
-  let delay = notifTime.getTime() - now.getTime();
-  if(delay>0){
-    setTimeout(()=>{ alert(`Reminder: ${task}`); },delay);
-  }
+function scheduleNotification(task,time,email){
+    let [hours,minutes] = time.split(":");
+    let now = new Date();
+    let notifTime = new Date();
+    notifTime.setHours(hours,minutes,0,0);
+    let delay = notifTime.getTime() - now.getTime();
+    if(delay>0){
+        setTimeout(()=>{
+            alert(`Reminder: ${task}`);
+            if(email){
+                console.log(`Simulated Email sent to ${email} for task: ${task}`);
+            }
+        }, delay);
+    }
 }
 
-// --- Current Affairs ---
-const currentAffairs = [
-  {title:"BBC World",link:"https://www.bbc.com/news"},
-  {title:"CNN",link:"https://www.cnn.com"},
-  {title:"Al Jazeera",link:"https://www.aljazeera.com/news/"}
-];
-function showCurrentAffairs(){
-  const container = document.getElementById("currentAffairs");
-  container.innerHTML="";
-  currentAffairs.forEach(c=>{
-    container.innerHTML+=`<p><a href="${c.link}" target="_blank">${c.title}</a></p>`;
-  });
+// Health & Meals placeholder
+function calculateSchedule(){
+    document.getElementById("results").innerHTML = "BMI: 22, Exercise: light, Meals: Balanced";
 }
-showCurrentAffairs();
-
-// --- Google Translate Widget ---
-function addGoogleTranslate(){
-  let gtDiv = document.createElement("div");
-  gtDiv.id="google_translate_element";
-  document.body.prepend(gtDiv);
-
-  let script = document.createElement("script");
-  script.src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-  document.body.appendChild(script);
-
-  window.googleTranslateElementInit = function(){
-    new google.translate.TranslateElement({pageLanguage:'en'},'google_translate_element');
-  }
-}
-addGoogleTranslate();

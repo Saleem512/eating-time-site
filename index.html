@@ -10,6 +10,9 @@
 
 <h1>Multi-Functional Calculator Dashboard</h1>
 
+<!-- Google Translate -->
+<div id="google_translate_element"></div>
+
 <!-- Tabs -->
 <div class="tabs">
   <button onclick="showTab('health')">Health & Meals</button>
@@ -55,15 +58,33 @@
 <div class="tab-content" id="tasks">
   <input type="text" id="taskInput" placeholder="Task">
   <input type="time" id="taskTime">
+  <input type="email" id="taskEmail" placeholder="Your Email (optional)">
   <button onclick="addTask()">Add Task</button>
   <ul id="taskList"></ul>
 </div>
 
 <!-- Current Affairs -->
 <div class="tab-content" id="currentAffairs">
-  <div id="currentAffairs"></div>
+  <div id="currentAffairs">
+    <ul>
+      <li><a href="https://www.bbc.com/news" target="_blank">BBC News</a></li>
+      <li><a href="https://www.cnn.com/world" target="_blank">CNN World</a></li>
+      <li><a href="https://www.aljazeera.com/news/" target="_blank">Al Jazeera</a></li>
+    </ul>
+  </div>
 </div>
 
+<!-- Superprof link -->
+<p style="text-align:center;margin-top:20px;">
+Learn Urdu with <a href="https://www.superprof.fr/ir/840856-6b6444" target="_blank">Saleem Sajjad</a>
+</p>
+
 <script src="script.js"></script>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
