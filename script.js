@@ -56,73 +56,60 @@ function calculateIPv4Enhanced(){
     let ipNum = ipToNum(ip);
     let networkNum = ipNum & maskNum;
     let broadcastNum = networkNum | (~maskNum >>> 0);
-
-    let firstUsable = (prefix>=31)? networkNum : networkNum +1;
-    let lastUsable = (prefix>=31)? broadcastNum : broadcastNum-1;
-    let usableHosts = (prefix>=31)? (prefix===31?2:1) : (broadcastNum - networkNum -1);
-    let gateway = firstUsable;
+    let firstHost = networkNum +1;
+    let lastHost = broadcastNum -1;
+    let gateway = firstHost;
 
     document.getElementById("ipv4Results").innerHTML = `
-        <p><b>IP Address:</b> ${ip}</p>
-        <p><b>Subnet Mask:</b> ${mask}</p>
-        <p><b>Prefix:</b> /${prefix}</p>
-        <p><b>Network Address:</b> ${numToIp(networkNum)} (${ipToBinary(numToIp(networkNum))})</p>
-        <p><b>First Usable Address:</b> ${numToIp(firstUsable)} (${ipToBinary(numToIp(firstUsable))})</p>
-        <p><b>Last Usable Address:</b> ${numToIp(lastUsable)} (${ipToBinary(numToIp(lastUsable))})</p>
-        <p><b>Broadcast Address:</b> ${numToIp(broadcastNum)} (${ipToBinary(numToIp(broadcastNum))})</p>
-        <p><b>Usable Hosts:</b> ${usableHosts}</p>
-        <p><b>Suggested Gateway:</b> ${numToIp(gateway)}</p>
+        IP Address: ${ip}<br>
+        Subnet Mask: ${numToIp(maskNum)}<br>
+        Network: ${numToIp(networkNum)}<br>
+        Broadcast: ${numToIp(broadcastNum)}<br>
+        First Usable: ${numToIp(firstHost)}<br>
+        Last Usable: ${numToIp(lastHost)}<br>
+        Gateway: ${numToIp(gateway)}<br>
+        Binary IP: ${ipToBinary(ip)}<br>
+        Binary Mask: ${ipToBinary(numToIp(maskNum))}
+    `;
+}
+
+// Health & Meal
+function calculateSchedule(){
+    let age = parseInt(document.getElementById("age").value);
+    let gender = document.getElementById("gender").value;
+    let weight = parseFloat(document.getElementById("weight").value);
+    let height = parseFloat(document.getElementById("height").value);
+
+    if(!age || !weight || !height){ alert("Enter all fields"); return; }
+
+    let bmi = (weight / ((height/100)**2)).toFixed(2);
+    let exercise = "Light exercise";
+
+    if(age<13) exercise="Play & Stretching";
+    else if(age>=13 && age<=40) exercise="Cardio & Strength Training";
+    else exercise="Light walk & Yoga";
+
+    document.getElementById("results").innerHTML = `
+        BMI: ${bmi}<br>
+        Suggested Exercise: ${exercise}
+    `;
+
+    // Sample meals
+    document.getElementById("meal-plan").innerHTML = `
+        Breakfast: Oats + Milk (200ml)<br>
+        Lunch: Chicken/Beef + Bulgur + Vegetables (300g)<br>
+        Snack: Fruits/Nuts (150g)<br>
+        Dinner: Soup + Salad + Grilled Meat (250g)
     `;
 }
 
 // Tasks
-let tasks = [];
 function addTask(){
-    let t = document.getElementById("taskInput").value;
-    let time = document.getElementById("taskTime").value;
-    let email = document.getElementById("taskEmail").value;
-
-    if(!t || !time){ alert("Enter task and time"); return;}
-
-    tasks.push({task:t, time:time, email:email});
-    displayTasks();
-    scheduleNotification(t,time,email);
-
-    document.getElementById("taskInput").value="";
-    document.getElementById("taskTime").value="";
-    document.getElementById("taskEmail").value="";
-}
-
-function displayTasks(){
-    let ul = document.getElementById("taskList");
-    ul.innerHTML="";
-    tasks.forEach((tsk,i)=>{
-        ul.innerHTML+=`
-        <li>
-            <b>${tsk.task}</b> at <i>${tsk.time}</i> 
-            <span style="color:#555">Email: ${tsk.email||'Not provided'}</span>
-            <button onclick="tasks.splice(${i},1);displayTasks()">Done</button>
-        </li>`;
-    });
-}
-
-function scheduleNotification(task,time,email){
-    let [hours,minutes] = time.split(":");
-    let now = new Date();
-    let notifTime = new Date();
-    notifTime.setHours(hours,minutes,0,0);
-    let delay = notifTime.getTime() - now.getTime();
-    if(delay>0){
-        setTimeout(()=>{
-            alert(`Reminder: ${task}`);
-            if(email){
-                console.log(`Simulated Email sent to ${email} for task: ${task}`);
-            }
-        }, delay);
-    }
-}
-
-// Health & Meals placeholder
-function calculateSchedule(){
-    document.getElementById("results").innerHTML = "BMI: 22, Exercise: light, Meals: Balanced";
+  let task = document.getElementById("taskInput").value;
+  let time = document.getElementById("taskTime").value;
+  let email = document.getElementById("taskEmail").value;
+  if(!task || !time){ alert("Enter task & time"); return; }
+  let li = document.createElement("li");
+  li.innerHTML = `${task} - ${time} <button onclick="this.parentNode.remove()">Done</button>`;
+  document.getElementById("taskList").appendChild(li);
 }
