@@ -1,7 +1,7 @@
-/* Body & General */
+/* Body & Background */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+  background: linear-gradient(120deg, #ffe6e6, #e6f7ff);
   margin: 0; padding: 20px;
   color: #2c3e50;
 }
@@ -14,10 +14,10 @@ body {
   font-size: 20px;
   font-weight: bold;
   color: #34495e;
-  background: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.9);
   padding: 8px 12px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   z-index: 1000;
 }
 
@@ -25,9 +25,9 @@ body {
 h1 {
   text-align: center;
   margin-top: 60px;
-  font-size: 32px;
-  color: #1f3a93;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  font-size: 36px;
+  color: #e74c3c;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.1);
 }
 
 /* Tabs */
@@ -39,76 +39,76 @@ h1 {
 }
 
 .tabs button {
-  padding: 12px 20px;
+  padding: 14px 24px;
   margin: 5px;
   cursor: pointer;
   border: none;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #3498db, #2980b9);
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
   color: white;
   font-weight: 600;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.3s;
 }
 
 .tabs button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
 }
 
 /* Tab content */
 .tab-content {
   display: none;
-  background: rgba(255,255,255,0.9);
-  padding: 25px;
-  border-radius: 15px;
+  background: rgba(255,255,255,0.95);
+  padding: 30px;
+  border-radius: 20px;
   margin-bottom: 20px;
-  max-width: 900px;
+  max-width: 950px;
   margin-left: auto;
   margin-right: auto;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
 }
 
 /* Inputs & Buttons */
 input, select {
-  margin: 8px 0;
-  padding: 8px 10px;
-  border-radius: 8px;
+  margin: 10px 0;
+  padding: 10px 14px;
+  border-radius: 12px;
   border: 1px solid #ccc;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 button {
-  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
   color: white;
   border: none;
-  padding: 10px 16px;
-  border-radius: 10px;
+  padding: 12px 18px;
+  border-radius: 12px;
   cursor: pointer;
   font-weight: bold;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
 }
 
 /* Result Boxes */
 #results, #meal-plan, #ageResult, #ipv4Results {
   font-family: 'Courier New', monospace;
-  background: rgba(255,255,255,0.85);
-  padding: 15px;
-  border-radius: 12px;
-  margin-top: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background: rgba(255,255,255,0.9);
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
 }
 
 /* Tasks */
 #taskList li {
-  margin: 8px 0;
-  background: rgba(52,152,219,0.1);
-  padding: 10px;
-  border-radius: 10px;
+  margin: 10px 0;
+  background: rgba(255,159,64,0.1);
+  padding: 12px;
+  border-radius: 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -117,13 +117,13 @@ button:hover {
 
 #taskList li:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 #taskList li button {
   background: #e74c3c;
-  padding: 6px 10px;
-  border-radius: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
 }
 
 #taskList li button:hover {
@@ -137,17 +137,16 @@ button:hover {
 }
 
 #currentAffairs li {
-  margin: 8px 0;
+  margin: 10px 0;
 }
 
 #currentAffairs li a {
-  color: #2980b9;
+  color: #d35400;
   font-weight: 600;
   text-decoration: none;
   transition: color 0.2s;
 }
 
 #currentAffairs li a:hover {
-  color: #1f3a93;
-  text-decoration: underline;
+  color: #e67e22;
 }
