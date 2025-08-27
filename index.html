@@ -2,16 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Eating Time & Daily Planner</title>
+    <title>Eating Time & Daily Schedule</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Animate.css for animations -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
 <body>
-    <h1>Eating Time & Daily Planner</h1>
+    <header>
+        <h1 style="font-family: Arial, sans-serif; color: #2E86C1;">Alovia Services</h1>
+    </header>
 
-    <!-- Google Translate -->
-    <div id="google_translate_element"></div>
+    <h2>Eating Time & Daily Schedule</h2>
 
     <div class="calculator">
         <label>Age:</label>
@@ -36,16 +35,8 @@
         <button onclick="calculateSchedule()">Calculate</button>
     </div>
 
-    <div id="results" class="animate__animated"></div>
+    <div id="results"></div>
 
     <script src="script.js"></script>
-
-    <!-- Google Translate Scripts -->
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-        }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
